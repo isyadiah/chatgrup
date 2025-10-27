@@ -1,0 +1,548 @@
+/* --- Global Reset & Colors --- */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5; /* Light gray background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+/* --- Header --- */
+.app-header {
+    background-color: #4CAF50; /* Green primary color */
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #388E3C;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-profile-pic {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.logout-btn {
+    background-color: #D32F2F; /* Red for logout */
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #C62828;
+}
+
+/* --- Auth (Login/Register) & Beranda Styles --- */
+.auth-container, .beranda-container {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.auth-form {
+    max-width: 400px;
+    margin: 0 auto 20px;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    text-align: left;
+}
+
+.auth-form h2 {
+    text-align: center;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.auth-form label, .auth-form input[type="text"], .auth-form input[type="password"], .auth-form input[type="file"], .auth-form button, .create-room-form input, .create-room-form button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.auth-form input:not([type="file"]), .auth-form button, .create-room-form input, .create-room-form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.auth-form button, .create-room-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.auth-form button:hover, .create-room-form button:hover {
+    background-color: #45A049;
+}
+
+.toggle-form {
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* Beranda */
+.beranda-container {
+    display: flex;
+    gap: 40px;
+    text-align: left;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.create-room-form {
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #e8f5e9;
+}
+
+.room-list {
+    flex: 2;
+    padding: 0 20px;
+}
+
+.room-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.room-list li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.room-list li:hover {
+    background-color: #f5f5f5;
+}
+
+.room-list li a {
+    text-decoration: none;
+    color: #1A76D2;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.room-list li span {
+    font-size: 0.8em;
+    color: #777;
+}
+
+/* --- Error/Success Messages --- */
+.error-message {
+    color: #D32F2F;
+    background-color: #FFEBEE;
+    border: 1px solid #D32F2F;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+    text-align: center;
+}
+.success-message {
+    color: #388E3C;
+    background-color: #E8F5E9;
+    border: 1px solid #388E3C;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+
+/* ================================== */
+/* CHAT ROOM STYLES          */
+/* ================================== */
+
+.chat-page {
+    border-radius: 0; /* Full width for better chat experience */
+    min-height: 100vh;
+}
+
+.chat-header {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h1 {
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.chat-header .back-btn {
+    color: white;
+    text-decoration: none;
+    background-color: #555;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.chat-header .back-btn:hover {
+    background-color: #777;
+}
+
+/* --- Chat Main Layout (GRID) --- */
+.chat-main {
+    display: grid;
+    grid-template-columns: 3fr 1fr; /* Chat: 75% | Sidebar: 25% */
+    height: calc(100vh - 55px); /* Header height approx 55px */
+    max-height: calc(100vh - 55px);
+    overflow: hidden;
+}
+
+/* --- Panel Anggota (Sidebar Kanan) --- */
+.chat-members-panel {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-left: 1px solid #ddd;
+    overflow-y: auto; /* Agar daftar anggota bisa di-scroll */
+}
+
+.chat-members-panel h2 {
+    font-size: 1.2em;
+    color: #4CAF50;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.member-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.member-item:last-child {
+    border-bottom: none;
+}
+
+.member-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.member-name {
+    font-weight: bold;
+    flex-grow: 1;
+    font-size: 0.9em;
+}
+
+.member-id {
+    font-size: 0.75em;
+    color: #888;
+}
+
+.current-user {
+    background-color: #e3f2fd; /* Light blue highlight for current user */
+    padding: 5px;
+    border-radius: 4px;
+    margin: 5px 0;
+}
+
+/* Tambah Anggota Form */
+.add-member-form {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.add-member-form h3 {
+    margin: 0 0 10px 0;
+    font-size: 1em;
+    color: #555;
+}
+
+.add-member-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-member-form button {
+    width: 100%;
+    padding: 8px;
+    background-color: #1A76D2; /* Blue for action */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-member-form button:hover {
+    background-color: #1565C0;
+}
+
+
+/* --- Area Chat Utama --- */
+.chat-area {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    height: 100%;
+}
+
+.chat-box {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Agar chat bisa di-scroll */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.system-message {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    margin: 20px 0;
+}
+
+/* Message Bubble Styles */
+.message-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 70%;
+}
+
+.own-message {
+    align-self: flex-end; /* Posisikan pesan kita di kanan */
+    flex-direction: row-reverse; /* Balik arah untuk pesan kita */
+    max-width: 70%;
+}
+
+.message-wrapper .message-profile-pic {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.message-content {
+    background-color: #e0e0e0;
+    padding: 10px 15px;
+    border-radius: 18px 18px 18px 0;
+    position: relative;
+    word-wrap: break-word;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.own-message .message-content {
+    background-color: #DCF8C6; /* Light green for own messages */
+    border-radius: 18px 18px 0 18px;
+}
+
+.message-content strong {
+    font-size: 0.9em;
+    color: #1A76D2; /* Blue for username/ID */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.own-message .message-content strong {
+    color: #4CAF50; /* Green for own username */
+}
+
+.message-content p {
+    margin: 0;
+    font-size: 1em;
+}
+
+.timestamp {
+    display: block;
+    text-align: right;
+    font-size: 0.65em;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Media (Image/Video/Audio) in Chat */
+.chat-media {
+    max-width: 100%;
+    max-height: 250px;
+    display: block;
+    margin-top: 5px;
+    border-radius: 8px;
+}
+
+/* --- Input Form --- */
+.message-input-form {
+    display: flex;
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+    background-color: #fcfcfc;
+    gap: 10px;
+}
+
+#message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 1em;
+}
+
+#send-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#send-btn:hover {
+    background-color: #45A049;
+}
+
+.file-attachment-area {
+    display: flex;
+    align-items: center;
+}
+
+#attach-btn {
+    background-color: #1A76D2;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5em;
+    transition: background-color 0.3s;
+}
+
+#attach-btn:hover {
+    background-color: #1565C0;
+}
+
+.file-preview-bar {
+    padding: 8px 20px;
+    background-color: #FFFDE7; /* Light yellow background */
+    border-top: 1px solid #FFE082;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-preview-bar strong {
+    margin-right: 10px;
+}
+
+#cancel-file-btn {
+    background-color: #D32F2F;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* --- Responsive Layout (Mobile) --- */
+@media (max-width: 768px) {
+    .app-container {
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    /* Header di mobile */
+    .app-header h1 {
+        font-size: 1.3em;
+    }
+    .app-header .user-info {
+        font-size: 0.8em;
+    }
+    
+    /* Layout Chat di Mobile */
+    .chat-main {
+        grid-template-columns: 1fr; /* Hanya 1 kolom */
+        height: calc(100vh - 55px); /* Sesuaikan tinggi */
+    }
+
+    /* Sembunyikan panel anggota (sidebar) secara default di mobile */
+    .chat-members-panel {
+        display: none; 
+    }
+    
+    .chat-area {
+        height: 100%;
+    }
+    
+    /* Beranda di Mobile */
+    .beranda-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .create-room-form, .room-list {
+        width: 100%;
+        padding: 0;
+    }
+    .create-room-form {
+        padding: 15px;
+    }
+}
